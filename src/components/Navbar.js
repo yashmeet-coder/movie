@@ -30,7 +30,9 @@ const Navbar = () => {
             <a className="nav-link active" href="/">TV Shows</a>
             </li>
             <li className="nav-item">
-            <a className="nav-link active" href="/wishlist">Wishlist</a>
+            <Link to='/wishlist'>
+            <a className="nav-link active" href="/">Wishlist</a>
+            </Link>
             </li>
         </ul>
           <div className='form-group'>
