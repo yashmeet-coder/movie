@@ -25,6 +25,27 @@ code {
   font-size: 16px;
 }
 
+.navbar-brand{
+  color: white;
+}
+.navbar_links{
+  display: flex;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.gpt3__navbar-menu_container-links-sign {
+  display: none;
+}
+
+.gpt3__navbar-menu {
+  margin-left: 1rem;
+
+  display: none;
+  position: relative;
+}
+
+
 .navbar{
   background-color: transparent;
 }
@@ -34,7 +55,7 @@ code {
 }
 
 .container-fluid{
-   margin: auto 10rem; 
+   margin: auto 3rem; 
 }
 
 .navbar-brand{
@@ -233,6 +254,39 @@ Link{
     flex-direction: column;
     align-items: normal;
   }
+
+  .navbar {
+    padding: 2rem;
+    flex-wrap: nowrap;
+    padding-left: 0;
+}
+
+.navbar_links {
+  display: none;
+}
+
+.gpt3__navbar-menu {
+  display: flex;
+}
+
+.gpt3__navbar-menu_container {
+  position: absolute;
+  z-index: 1;
+  top: 26px;
+  right: 22px;
+  background-color: black;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.gpt3__navbar-menu_container a{
+text-decoration: none;
+color: white;
+}
+
+.gpt3__navbar-menu_container-links-sign {
+  display: block;
+}
 
   .heading{
     flex-wrap: wrap;

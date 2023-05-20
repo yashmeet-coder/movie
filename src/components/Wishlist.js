@@ -23,7 +23,7 @@ const Wishlist = () => {
         <h1>{movie.name}</h1>
         </div>
       )): 
-      <h1>Loading.....</h1>
+      <h1>Loading...</h1>
       }
     </div>
   )
