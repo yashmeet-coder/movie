@@ -1,0 +1,89 @@
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import useFetch from './useFetch'
+import axios from 'axios'
+
+const MovieDetails = () => {
+  const { id } = useParams();
+  const url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=7e8c1fbdace277ba311ad52b6bb25328"
+  const [movie, setMovie] = useState([])
+  const [genres,setGenre] = useState([])
+  const [clas,setClass] = useState("fa-regular fa-heart");
+  const [click,setClicked] = useState(false);
+  const [display,setDisplay] = useState(0);
+const clicked = () => {
+  if(!click){
+  setClass("fa-regular fa-heart fa-solid clicked")
+  setDisplay(1)
+  setTimeout(() => {
+    setDisplay(0)
+  },1000)
+  setClicked(true);
+  try{
+  axios.post("https://imdb-at2a.onrender.com/wishlist",{
+    id: id,
+    movie: movie
+  })
+  .then((res)=>{
+    console.log(res);
+  })}
+  catch(error){
+    console.log(error.response);
+  }
+  }
+  else{
+  setClass("fa-regular fa-heart")
+  setClicked(false)
+  }
+}
+
+
+  fetch(url)
+    .then(res => {
+      if (!res.ok)
+        console.log("no");
+      return res.json();
+    })
+    .then(data => {
+      setMovie(data)
+      setGenre(data.genres)
+    })
+  const backdrop = "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+  return (
+    <div>
+      <div className='backdrop' style={{ backgroundImage: `url(${backdrop})` }}>
+        <div className='overlay'>
+          <div className='main_content'>
+            
+            <div className='poster'>
+              <img src={"https://image.tmdb.org/t/p/original" + movie.poster_path} style={{ borderRadius: "9px" }} />
+              <i className={clas} onClick={clicked}></i>
+            </div>
+            <div className='movie_details'>
+            <div className='added' style={{opacity: display}}>Added to wishlist!</div>
+                <h2>{movie.original_title}</h2>
+                
+              <div className='heading'>
+                <span>{movie.release_date}</span>
+                {movie && genres.map((element => (
+                    <span>{element.name}</span>
+                  )))}
+                  <span><span style={{marginRight :"0.3rem"}}>{Math.floor(movie.runtime/60)}h</span><span>{movie.runtime%60}m</span></span>
+              </div>
+              <div className='score'>
+                <span>{Math.ceil(10*movie.vote_average)}<i class="fa-solid fa-percent"></i></span>
+              </div>
+              <div className='tagline'>
+                <span style={{display: "inline-flex",color: "grey"}}>{movie.tagline}</span>
+              </div>
+              <h5>Overview</h5>
+              <p>{movie.overview}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  )
+}
+
+export default MovieDetails
