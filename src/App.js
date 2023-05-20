@@ -33,6 +33,7 @@ function App() {
       </Route>
       <Route path="/wishlist">
         <Navbar />
+        <Wishlist/>
       </Route>
     </Switch>
     </div>
