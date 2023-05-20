@@ -32,8 +32,7 @@ function App() {
         <Search />
       </Route>
       <Route path="/wishlist">
-        <Navbar></Navbar>
-        <Wishlist/>
+        <Navbar />
       </Route>
     </Switch>
     </div>
