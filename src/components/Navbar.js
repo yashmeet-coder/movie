@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { RiMenu3Line, RiCloseLine } from 'react-icons/ri'
 import useFetch from './useFetch'
 import MovieList from './MovieList'
 import Search from './Search'
@@ -7,7 +8,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [query,setQuery] = useState('')
-
+  const [toggleMenu, setToggleMenu] = useState(false)
   
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -15,34 +16,51 @@ const Navbar = () => {
   const search_url = "https://api.themoviedb.org/3/search/movie?api_key=7e8c1fbdace277ba311ad52b6bb25328&language=en-US&query="+query+"&page=1&include_adult=false"
   console.log(search_url);
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark navbar-movie">
+    <nav className="navbar py-4">
         <div className="container-fluid">
-        <a className="navbar-brand" href="/">IMDB</a>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 navbar-links">
-            <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/">Movies</a>
-            </li>
-            <li className="nav-item">
-            <a className="nav-link active" href="/">TV Shows</a>
-            </li>
-            <li className="nav-item">
-            <Link to='/wishlist'>
-            <a className="nav-link active" href="/">Wishlist</a>
+          <a className="navbar-brand">IMDB</a>
+          <div className='navbar_links'>
+          <Link to="" style={{textDecoration: "none" , color:"white"}}>
+            <a>Movies</a>
             </Link>
-            </li>
-        </ul>
-          <div className='form-group'>
+            <Link to="" style={{textDecoration: "none" , color:"white"}}>
+            <a >TV Shows</a>
+            </Link>
+            <Link to="/wishlist" style={{textDecoration: "none" , color:"white"}}>
+            <a >Wishlist</a>
+            </Link>
+            <div className='form-group'>
             <input className="search_bar" type="search" placeholder="Search" aria-label="Search" onChange={handleChange}/>
             <Link to={`/search/${query}`}>
             <i className="fa-solid fa-magnifying-glass search" type="submit" style={{color: "white"}}></i>
             </Link>
             </div>
+    
+          </div>
         </div>
-    </div>
+        <div className="gpt3__navbar-menu">
+        {toggleMenu
+          ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
+          : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />}
+        {toggleMenu && (
+          <div className="gpt3__navbar-menu_container">
+            <div className="gpt3__navbar-menu_container-links scale-up-center">
+              <p><a href="/">Movies</a></p>
+              <p><a href="#wgpt3">TV Shows</a></p>
+             <Link to="/wishlist">
+              <p><a href="#possibility">Wishlist</a></p>
+              </Link>
+              <div className='form-group'>
+            <input className="search_bar" type="search" placeholder="Search" aria-label="Search" onChange={handleChange}/>
+            <Link to={`/search/${query}`}>
+            <i className="fa-solid fa-magnifying-glass search" type="submit" style={{color: "white"}}></i>
+            </Link>
+            </div>
+              
+            </div>
+          </div>
+        )}
+      </div>
 </nav>
   )
 }
