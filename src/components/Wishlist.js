@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import useFetch from './useFetch';
+import { RiCloseLine } from 'react-icons/ri';
 
 const Wishlist = () => {
   const[movies,setMovies] = useState([]); 
@@ -11,6 +12,7 @@ const Wishlist = () => {
     setMovies(res.data)
     console.log(res.data);
   })
+
 
   return (
     <div className='movies'>
@@ -21,6 +23,8 @@ const Wishlist = () => {
                 <i className="fa-solid fa-circle-info info" style={{marginTop:"2rem",color:"yellow"}}></i>
         </Link>
         <h1>{movie.name}</h1>
+    
+        
         </div>
       )): 
       <h1>Loading...</h1>

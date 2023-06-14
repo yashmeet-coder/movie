@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import TvList from './TvList'
 import axios from 'axios'
 import useFetch from './useFetch'
 
 const MovieDetails = () => {
   const { id } = useParams();
   const url = "https://api.themoviedb.org/3/tv/" + id + "?api_key=7e8c1fbdace277ba311ad52b6bb25328"
+  const similar_url = "https://api.themoviedb.org/3/tv/"+ id + "/similar?language=en-US&page=1&api_key=7e8c1fbdace277ba311ad52b6bb25328";
+  const similar_movies = useFetch(similar_url);
   const [movie, setMovie] = useState([])
   const [genres,setGenre] = useState([])
   const [clas,setClass] = useState("fa-regular fa-heart");
@@ -79,6 +82,8 @@ const clicked = () => {
           </div>
         </div>
       </div>
+      <h2 id="similar">Similar TV Shows</h2>
+      {similar_movies && <TvList tv={similar_movies}></TvList>}
       </div>
   )
 }

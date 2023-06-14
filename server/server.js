@@ -42,8 +42,6 @@ app.post("/wishlist",async function(req,res){
     })
     })
     
-    
-    
 })
 
 

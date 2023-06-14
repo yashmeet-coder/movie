@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import { useEffect } from 'react';
 import MovieList from './MovieList'
 import useFetch from './useFetch';
+import Navbar from './Navbar';
+import Movie_Carousel from './Carousel';
 // import Modal from './Modal';
 import TvList from './TvList'
 
@@ -19,6 +21,8 @@ const Home = () => {
       
       <h2>Trending TV Shows</h2>
         {tv && <TvList tv={tv} setModal={setModal} modal={modal}></TvList>}
+        
+        {/* {movies && <Movie_Carousel movies={movies}></Movie_Carousel>} */}
     </div>
   )
 }

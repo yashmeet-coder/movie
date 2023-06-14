@@ -9,16 +9,27 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
   const [query,setQuery] = useState('')
   const [toggleMenu, setToggleMenu] = useState(false)
-  
+  const [color,setColor] = useState(false);
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 80) {
+        setColor(true);
+    }
+    else {
+        setColor(false);
+    }
+};
+window.addEventListener('scroll', changeNavbarColor);
   const handleChange = (e) => {
     setQuery(e.target.value)
   }
   const search_url = "https://api.themoviedb.org/3/search/movie?api_key=7e8c1fbdace277ba311ad52b6bb25328&language=en-US&query="+query+"&page=1&include_adult=false"
   console.log(search_url);
   return (
-    <nav className="navbar py-4">
+    <nav className={color ? "navbar colorChange py-3": "navbar py-3"}>
         <div className="container-fluid">
+          <Link to="/" style={{textDecoration: "none" , color:"white"}}>
           <a className="navbar-brand">IMDB</a>
+          </Link>
           <div className='navbar_links'>
           <Link to="" style={{textDecoration: "none" , color:"white"}}>
             <a>Movies</a>
