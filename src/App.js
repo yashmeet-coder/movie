@@ -36,7 +36,7 @@ function App() {
         <Search />
       </Route>
       <Route path="/wishlist">
-        <Navbar></Navbar>
+        <Navbar />
         <Wishlist/>
       </Route>
       <Route path="/carousel">
